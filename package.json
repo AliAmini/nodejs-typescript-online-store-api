@@ -1,12 +1,11 @@
 {
   "name": "nodejs-mongodb-online-store",
-  "type": "module",
   "version": "1.0.0",
   "description": "Online store",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js",
+    "start": "ts-node-dev --respawn --pretty --transpile-only src/index.ts",
     "build": "rm -rf build/ && prettier --write src/ && tsc"
   },
   "author": "Ali Amini<aliamini.code@gmail.com>",
@@ -30,6 +29,7 @@
     "@types/dotenv": "^8.2.0",
     "@types/helmet": "^4.0.0",
     "@types/node": "^17.0.38",
-    "nodemon": "^2.0.16"
+    "nodemon": "^2.0.16",
+    "ts-node-dev": "^2.0.0"
   }
 }
