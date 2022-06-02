@@ -2,7 +2,6 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import * as dotenv from "dotenv";
-// import * as bodyParser from "body-parser";
 import helmet from "helmet";
 import routesV1 from './api/v1/index';
 
@@ -26,8 +25,6 @@ const app = express();
  *  App Configuration
  */
 
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: true }));
 app.use(helmet());
 app.use(cors());
 app.use(express.json());
