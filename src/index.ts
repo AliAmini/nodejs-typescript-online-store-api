@@ -1,4 +1,5 @@
 import express from "express";
+import mongoose from "mongoose";
 import cors from "cors";
 import * as dotenv from "dotenv";
 // import * as bodyParser from "body-parser";
@@ -41,5 +42,20 @@ app.use('/api/v1', routesV1);
  * Server Activation
  */
 app.listen(PORT, () => {
-  console.log(`ُ\n\nServer is listening on port ${PORT}\n\n`);
+  console.log(`ُ\nServer is listening on port ${PORT}\n`);
 });
+
+
+/**
+ * Database Activation
+ */
+const DATABASE_URL = process.env.DATABASE_URL;
+if (!DATABASE_URL) {
+  console.error('ERROR: You need to specify `DATABASE_URL` in .env file.');
+  process.exit(1);
+}
+mongoose
+    .connect(DATABASE_URL)
+    .then(() => {
+      console.log('\nMongoDb connection status: Connected ✅✅✅\n');
+    })
