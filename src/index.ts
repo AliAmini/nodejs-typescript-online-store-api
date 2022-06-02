@@ -12,10 +12,11 @@ dotenv.config();
  */
 
 if (!process.env.PORT) {
+  console.error('ERROR: You need to specify `PORT` in .env file.');
   process.exit(1);
 }
-const PORT: number = parseInt(process.env.PORT);
 
+const PORT: number = parseInt(process.env.PORT);
 const app = express();
 
 
