@@ -1,22 +1,35 @@
 {
   "name": "nodejs-mongodb-online-store",
+  "type": "module",
   "version": "1.0.0",
   "description": "Online store",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon index.js",
-    "production": "node index.js"
+    "build": "rm -rf build/ && prettier --write src/ && tsc"
   },
   "author": "Ali Amini<aliamini.code@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "@types/express": "^4.17.13",
+    "@types/morgan": "^1.9.3",
     "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
     "express": "^4.18.1",
+    "helmet": "^5.1.0",
     "jwt": "^0.2.0",
-    "mongoose": "^6.3.5"
+    "mongoose": "^6.3.5",
+    "morgan": "^1.10.0",
+    "ts-node": "^10.8.0",
+    "typescript": "^4.7.2"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.12",
+    "@types/dotenv": "^8.2.0",
+    "@types/helmet": "^4.0.0",
+    "@types/node": "^17.0.38",
     "nodemon": "^2.0.16"
   }
 }

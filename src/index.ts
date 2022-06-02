@@ -1,7 +1,6 @@
-import express from 'express';
-import bodyParser from 'body-parser';
-import routesV1 from './src/api/v1';
-import config from './config/config.json';
+import * as express from "express";
+import * as bodyParser from "body-parser";
+import routesV1 from './api/v1/index.js';
 
 const PORT = config.app.port;
 
