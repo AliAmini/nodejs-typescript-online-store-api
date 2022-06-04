@@ -3,7 +3,7 @@ import Product, { IProduct } from '@models/Product/Product.model';
 import { getNewObjectId } from '@helpers/General.helper';
 import Category, { ICategory } from "@models/Category/Category.model";
 
-const user1: IUser = {
+export const user: IUser = {
   _id: getNewObjectId(),
   email: 'email@gmail.com',
   password: '123456',
@@ -78,7 +78,7 @@ const products : IProduct[] = [
 ]
 
 const createUser = async () => {
-  const user = await User.create(user1);
+  const user = await User.create(user);
 };
 
 
