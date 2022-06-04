@@ -28,20 +28,29 @@ describe('Test all Auth routes', () => {
     expect(response.status).toBe(401);
     expect(response.body).toHaveProperty('error');
     expect(response.body.error).toMatch("email and password should be passed");
-    console.log('response.body', response.status, response.body);
   });
+
+  it('should throw wrong password email error > /auth/login', async () => {
+    const response = await request(app)
+      .post('/api/v1/auth/login')
+      .send({email: 'email@gmail.com', password: '12345'});
+  
+    expect(response.status).toBe(401);
+    expect(response.body?.error).toMatch("email or password is not correct");
+  });
+
+  it('should login correctly > /auth/login', async () => {
+    const response = await request(app)
+      .post('/api/v1/auth/login')
+      .send({email: 'email@gmail.com', password: '123456'});
+  
+    expect(response.status).toBe(401);
+    expect(response.body?.success).toBe(true);
+    expect(response.body).toHaveProperty('accessToken');
+  });
+
 });
 
-it('should throw validation error > /auth/login', async () => {
-  const response = await request(app)
-    .post('/api/v1/auth/login')
-    .send({email: 'xxxxxx@mail.com', password: ''});
-
-  expect(response.status).toBe(401);
-  expect(response.body).toHaveProperty('error');
-  expect(response.body.error).toMatch("email and password should be passed");
-  console.log('response.body', response.status, response.body);
-});
 
 afterAll(async () => {
   await mongoose.connection.close();

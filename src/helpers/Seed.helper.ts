@@ -78,7 +78,7 @@ const products : IProduct[] = [
 ]
 
 const createUser = async () => {
-  const user = await User.create(user);
+  const _user = await User.create(user);
 };
 
 
