@@ -4,7 +4,7 @@
   "description": "Online store",
   "main": "src/server.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --runInBand",
     "start": "ts-node-dev -r tsconfig-paths/register --respawn --pretty --transpile-only src/server.ts",
     "build": "rm -rf build/ && prettier --write src/ && tsc",
     "seed-database": "ts-node-dev -r tsconfig-paths/register --pretty --transpile-only src/Scripts/seedDatabase.ts"
