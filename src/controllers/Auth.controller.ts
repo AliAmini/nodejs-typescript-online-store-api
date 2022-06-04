@@ -13,8 +13,12 @@ class AuthController {
   async login(req: Request, res: Response) {
     const {email, password} = req.body;
 
+    if(!email || !password) {
+      return res.status(401).json({success: false, message: "email and password should be passed."});
+    }
+
     try {
-      const {token} = await authService.loginUser(email, password);
+      const token = await authService.loginUser(email, password);
 
       res.json({
         success: true,
@@ -22,7 +26,8 @@ class AuthController {
       });
 
     } catch(e: any) {
-      res.json({
+      // console.log('=== error', e);
+      res.status(401).json({
         success: false,
         error: e.message
       })
