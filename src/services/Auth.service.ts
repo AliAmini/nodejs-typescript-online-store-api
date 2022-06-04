@@ -12,7 +12,7 @@ class AuthService {
       console.log('Password, hash', password, foundUser.password);
     }
 
-    const isCorrectPassword = comparePassword(password, foundUser.password);
+    const isCorrectPassword = await comparePassword(password, foundUser.password);
     if(!isCorrectPassword) {
       throw new Error("Entered email or password is not correct.");
     }
