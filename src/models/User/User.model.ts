@@ -1,3 +1,4 @@
+import { hashPassword } from '@helpers/Auth.helper';
 import { Schema, model, Types } from 'mongoose';
 
 export interface IUser {
@@ -16,6 +17,15 @@ const userSchema = new Schema<IUser>({
 });
 
 
+// Hashing Password
+userSchema.pre('save', async function() {
+  if(this.isNew) {
+    const plainTextPassword = this.password;
+    const hashedPassword = await hashPassword(plainTextPassword);
+
+    this.password = hashedPassword;
+  }
+});
 
 const User = model<IUser>('User', userSchema);
 
