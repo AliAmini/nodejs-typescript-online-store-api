@@ -1,5 +1,6 @@
-import express from "express";
+import express, {Express} from "express";
 import mongoose from "mongoose";
+import bodyParser from 'body-parser'
 import cors from "cors";
 import * as dotenv from "dotenv";
 import helmet from "helmet";
@@ -18,7 +19,7 @@ if (!process.env.PORT) {
 }
 
 const PORT: number = parseInt(process.env.PORT);
-const app = express();
+const app: Express = express();
 
 
 
@@ -28,6 +29,7 @@ const app = express();
 
 app.use(helmet());
 app.use(cors());
+app.use(bodyParser.json());
 app.use(express.json());
 
 
