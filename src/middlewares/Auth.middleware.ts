@@ -17,11 +17,11 @@ const AuthMiddelware = async (req: IAuthenticatedRequest, res: Response, next: N
 
   } catch (error: any) {
     if (error.name === 'TokenExpiredError') {
-      res.status(401).json({ message: 'Expired token' });
+      res.status(401).json({ success: false, error: 'Expired token' });
       return;
     }
 
-    return res.status(500).json({ message: 'Failed to authenticate user' });
+    return res.status(500).json({ success: false, error: 'Failed to authenticate user' });
   }
 
   // run the next middleware of the route ---
