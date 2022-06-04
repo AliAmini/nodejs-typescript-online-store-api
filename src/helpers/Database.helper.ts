@@ -2,6 +2,8 @@ import mongoose from "mongoose";
 
 
 export const connectDatabase = async () => {
+  console.log('MongoDB connection status: start to connecting...');
+  
   /**
    * Database Activation
    */
@@ -14,5 +16,5 @@ export const connectDatabase = async () => {
   await mongoose
     .connect(DATABASE_URL);
   
-  console.log('\nMongoDb connection status: Connected ✅✅✅\n');
+  console.log('\nMongoDB connection status: Connected ✅✅✅\n');
 };
