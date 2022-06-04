@@ -3,9 +3,7 @@ import { validateJWT } from '@helpers/Auth.helper';
 import {Response, Request, NextFunction} from 'express';
 
 
-const AuthMiddelware =  (req: Request, res: Response, next: NextFunction) => {
-  console.log('===== req.headers', req.headers);
-  
+const AuthMiddelware =  (req: Request, res: Response, next: NextFunction) => {  
   const authorization = req.headers.authorization;
   if (!authorization) {
     res.status(401).json({error: "Authentication Error: AccessToken is required."});

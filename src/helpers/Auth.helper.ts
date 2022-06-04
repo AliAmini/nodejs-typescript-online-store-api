@@ -46,7 +46,7 @@ export const validateJWT = (token: string) : Promise<ITokenPayload> => {
 
   return new Promise((resolve, reject) => {
     verify(token, JWT_PRIVATE_KEY, (error, decoded: any) => {
-      console.log('===== decoded', decoded);
+      // console.log('===== decoded', decoded);
       if (error) return reject(error);
 
       resolve(decoded as ITokenPayload);
