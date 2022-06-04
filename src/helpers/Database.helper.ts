@@ -13,8 +13,10 @@ export const connectDatabase = async () => {
     process.exit(1);
   }
 
-  await mongoose
+  const connection = await mongoose
     .connect(DATABASE_URL);
   
   console.log('\nMongoDB connection status: Connected ✅✅✅\n');
+
+  return connection;
 };
