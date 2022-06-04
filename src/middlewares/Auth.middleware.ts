@@ -1,6 +1,6 @@
 import { validateJWT } from '@helpers/Auth.helper';
 import { IAuthenticatedRequest } from '@mytypes/General.types';
-import {Request, Response, NextFunction} from 'express';
+import {Response, NextFunction} from 'express';
 
 
 const AuthMiddelware = async (req: IAuthenticatedRequest, res: Response, next: NextFunction) => {
