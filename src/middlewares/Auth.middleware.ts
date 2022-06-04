@@ -6,7 +6,7 @@ import {Response, Request, NextFunction} from 'express';
 const AuthMiddelware =  (req: Request, res: Response, next: NextFunction) => {  
   const authorization = req.headers.authorization;
   if (!authorization) {
-    res.status(401).json({error: "Authentication Error: AccessToken is required."});
+    res.status(401).json({success: false, error: "Authentication Error: AccessToken is required."});
     return;
   }
   
