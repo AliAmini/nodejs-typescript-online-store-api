@@ -20,17 +20,30 @@ beforeAll(async () => {
 
 describe('Test all Auth routes', () => {
 
-  it('should call /auth/login route', async () => {
+  it('should throw validation error > /auth/login', async () => {
     const response = await request(app)
-      .get('/api/v1/auth/login');
+      .post('/api/v1/auth/login')
+      .send({email: 'xxxxxx@mail.com', password: ''});
 
-    expect(response.status).toBe(404);
+    expect(response.status).toBe(401);
+    expect(response.body).toHaveProperty('error');
+    expect(response.body.error).toMatch("email and password should be passed");
+    console.log('response.body', response.status, response.body);
   });
+});
 
+it('should throw validation error > /auth/login', async () => {
+  const response = await request(app)
+    .post('/api/v1/auth/login')
+    .send({email: 'xxxxxx@mail.com', password: ''});
+
+  expect(response.status).toBe(401);
+  expect(response.body).toHaveProperty('error');
+  expect(response.body.error).toMatch("email and password should be passed");
+  console.log('response.body', response.status, response.body);
 });
 
 afterAll(async () => {
   await mongoose.connection.close();
-  // await connection.close();
   await server.close();
 });

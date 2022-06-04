@@ -14,7 +14,7 @@ class AuthController {
     const {email, password} = req.body;
 
     if(!email || !password) {
-      return res.status(401).json({success: false, message: "email and password should be passed."});
+      return res.status(401).json({success: false, error: "email and password should be passed."});
     }
 
     try {

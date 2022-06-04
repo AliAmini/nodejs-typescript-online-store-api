@@ -6,7 +6,8 @@ import helmet from "helmet";
 import routesV1 from './api/v1/index';
 import morgan from "morgan";
 
-dotenv.config();
+const envFileName = process.env.NODE_ENV === 'test'? '.env.test' : '.env';
+dotenv.config({path: envFileName});
 
 /**
  * App Variables
