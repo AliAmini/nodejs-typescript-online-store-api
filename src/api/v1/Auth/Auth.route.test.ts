@@ -19,7 +19,7 @@ beforeAll(async () => {
   })
 });
 
-describe('Test all Auth routes', () => {
+describe('Test Login route', () => {
 
   it('should throw validation error > /auth/login', async () => {
     const response = await request(app)
