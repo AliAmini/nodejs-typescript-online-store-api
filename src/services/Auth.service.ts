@@ -8,9 +8,7 @@ class AuthService {
     const foundUser = await User.findOne({email: email}).lean().exec();
     if(!foundUser) {
       throw new Error("User is not found");
-    } else {
-      console.log('Password, hash', password, foundUser.password);
-    }
+    } 
 
     const isCorrectPassword = await comparePassword(password, foundUser.password);
     if(!isCorrectPassword) {

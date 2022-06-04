@@ -1,6 +1,7 @@
 import request from 'supertest';
 import app, {PORT} from "@src/app";
 import { connectDatabase } from '@helpers/Database.helper';
+import { user } from '@helpers/Seed.helper';
 
 let mongoose: any, server: any;
 
@@ -42,9 +43,9 @@ describe('Test all Auth routes', () => {
   it('should login correctly > /auth/login', async () => {
     const response = await request(app)
       .post('/api/v1/auth/login')
-      .send({email: 'email@gmail.com', password: '123456'});
+      .send({email: user.email, password: user.password});
   
-    expect(response.status).toBe(401);
+    expect(response.status).toBe(200);
     expect(response.body?.success).toBe(true);
     expect(response.body).toHaveProperty('accessToken');
   });
