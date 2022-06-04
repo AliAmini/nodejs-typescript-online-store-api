@@ -20,13 +20,33 @@ class ProductController {
       });
 
     } catch(e: any) {
-      // console.log('=== error', e);
       res.status(500).json({
         success: false,
         error: e.message
       })
     } 
   };
+
+
+  async getProductDiscount(req: Request, res: Response) {
+    try {
+      const { productCode } = req.params;
+      // if(!productCode) {
+      //   res.status(400).json({success: false, error: '`productCode` should sent in url querystring.'});
+      // }
+
+      const discount = await productService.getProductDiscount(productCode);
+
+      res.send(`${discount}`);
+
+    } catch(e: any) {
+      console.log('==== error', e);
+      res.status(500).json({
+        success: false,
+        error: e.message
+      })
+    } 
+  }
 
 }
 
