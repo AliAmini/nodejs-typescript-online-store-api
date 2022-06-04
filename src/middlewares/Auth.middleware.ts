@@ -1,7 +1,9 @@
+import { validateJWT } from '@helpers/Auth.helper';
+import { IAuthenticatedRequest } from '@mytypes/General.types';
 import {Request, Response, NextFunction} from 'express';
 
 
-const AuthMiddelware = (req: Request, res: Response, next: NextFunction) => {
+const AuthMiddelware = async (req: IAuthenticatedRequest, res: Response, next: NextFunction) => {
   
   if (!req.headers.authorization) {
     return res.status(401).json({error: "Authentication Error: AccessToken is required."});
@@ -9,6 +11,21 @@ const AuthMiddelware = (req: Request, res: Response, next: NextFunction) => {
   
   let token = req.headers.authorization.replace(/Bearer\s+/i, '');
 
+  try {
+    const payload = await validateJWT(token);
+    req.auth = payload;
+
+  } catch (error: any) {
+    if (error.name === 'TokenExpiredError') {
+      res.status(401).json({ message: 'Expired token' });
+      return;
+    }
+
+    return res.status(500).json({ message: 'Failed to authenticate user' });
+  }
+
+  // run the next middleware of the route ---
+  next();
 };
 
 export default AuthMiddelware;
