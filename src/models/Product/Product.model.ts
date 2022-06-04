@@ -10,7 +10,7 @@ export interface IProduct {
 
 const productSchema = new Schema<IProduct>({
   name: { type: String, required: true },
-  code: { type: String, required: true },
+  code: { type: String, required: true, unique: true },
   category: { type: Schema.Types.ObjectId, ref: 'category' },
   discountPercent: Number,
 });
