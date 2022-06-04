@@ -1,19 +1,27 @@
 import { validateJWT } from '@helpers/Auth.helper';
-import { IAuthenticatedRequest } from '@mytypes/General.types';
-import {Response, NextFunction} from 'express';
+// import { IAuthenticatedRequest } from '@mytypes/General.types';
+import {Response, Request, NextFunction} from 'express';
 
 
-const AuthMiddelware = async (req: IAuthenticatedRequest, res: Response, next: NextFunction) => {
+const AuthMiddelware =  (req: Request, res: Response, next: NextFunction) => {
+  console.log('===== req.headers', req.headers);
   
-  if (!req.headers.authorization) {
-    return res.status(401).json({error: "Authentication Error: AccessToken is required."});
+  const authorization = req.headers.authorization;
+  if (!authorization) {
+    res.status(401).json({error: "Authentication Error: AccessToken is required."});
+    return;
   }
   
-  let token = req.headers.authorization.replace(/Bearer\s+/i, '');
+  let token = authorization.replace(/Bearer\s+/i, '');
 
   try {
-    const payload = await validateJWT(token);
-    req.auth = payload;
+    validateJWT(token).then(payload => {
+      req.auth = payload;
+      
+      
+      // run the next middleware of the route ---
+      next();
+    });
 
   } catch (error: any) {
     if (error.name === 'TokenExpiredError') {
@@ -21,11 +29,11 @@ const AuthMiddelware = async (req: IAuthenticatedRequest, res: Response, next: N
       return;
     }
 
-    return res.status(500).json({ success: false, error: 'Failed to authenticate user' });
+    res.status(500).json({ success: false, error: 'Failed to authenticate user' });
+    return;
   }
 
-  // run the next middleware of the route ---
-  next();
+  
 };
 
 export default AuthMiddelware;
