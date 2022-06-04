@@ -1,16 +1,18 @@
-import { Schema, model } from 'mongoose';
+import { Schema, model, Types } from 'mongoose';
 
 export interface ICategory {
-  _id: string,
+  _id: string | Types.ObjectId,
   name: string;
-  parent?: string,
+  parent?: string | Types.ObjectId,
+  children?: string[] | Types.ObjectId[],
   discountPercent?: number;
 }
 
 const categortySchema = new Schema<ICategory>({
   name: { type: String, required: true },
-  parent: { type: Schema.Types.ObjectId, ref: 'category' },
   discountPercent: Number,
+  parent: { type: Schema.Types.ObjectId, ref: 'category' },
+  children: [{ type: Schema.Types.ObjectId, ref: 'category' }]
 });
 
 

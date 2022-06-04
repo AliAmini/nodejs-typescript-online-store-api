@@ -1,7 +1,7 @@
-import { Schema, model } from 'mongoose';
+import { Schema, model, Types } from 'mongoose';
 
 export interface IUser {
-  _id: string,
+  _id: string | Types.ObjectId,
   name: string;
   email: string;
   password: string,

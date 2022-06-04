@@ -1,14 +1,16 @@
-import { Schema, model } from 'mongoose';
+import mongoose, { Schema, model, Types } from 'mongoose';
 
 export interface IProduct {
-  _id: string,
+  _id: string | Types.ObjectId,
+  code: string,
   name: string;
-  category?: string,
+  category?: string | Types.ObjectId,
   discountPercent?: number;
 }
 
 const productSchema = new Schema<IProduct>({
   name: { type: String, required: true },
+  code: { type: String, required: true },
   category: { type: Schema.Types.ObjectId, ref: 'category' },
   discountPercent: Number,
 });
