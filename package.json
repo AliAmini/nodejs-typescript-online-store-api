@@ -1,7 +1,7 @@
 {
-  "name": "nodejs-mongodb-online-store",
+  "name": "nodejs-typescript-online-store",
   "version": "1.0.0",
-  "description": "Online store",
+  "description": "Online store by Node.js, TypeScript, Mongodb, JWT Authentication, Jest & Supertest Test",
   "main": "src/server.js",
   "scripts": {
     "test": "jest --runInBand",

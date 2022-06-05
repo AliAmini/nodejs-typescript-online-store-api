@@ -70,3 +70,4 @@ You could run tests like this:
 yarn test
 ```
 
+Test envirement uses `.env.test` file.
