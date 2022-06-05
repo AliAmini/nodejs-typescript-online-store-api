@@ -1,4 +1,4 @@
-# Online Store by Node.js & TypeScript
+# Online Store REST API by Node.js & TypeScript
 A online store based project with Node.js, TypeScript, Mongodb, JWT authentication, Jest & Supertest testing.
 
 # Run Project
