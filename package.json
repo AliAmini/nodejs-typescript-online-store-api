@@ -1,7 +1,7 @@
 {
   "name": "nodejs-typescript-online-store-api",
   "version": "1.0.0",
-  "description": "Online store REST API by Node.js, TypeScript, Mongodb, JWT Authentication, Jest & Supertest Test",
+  "description": "Online store REST API by Node.js, TypeScript, MongoDB, JWT Authentication, Jest & Supertest Tests",
   "main": "src/server.js",
   "scripts": {
     "test": "jest --runInBand",
